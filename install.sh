@@ -1,5 +1,11 @@
 #!/bin/bash
 
+########################################################################################
+# This script will install some tools and  setup a basic environment.                  #
+# I wanted to automate the process of setting up a new server.                         #
+
+# Author: greenst4r5                                                                   #
+########################################################################################
 
 not_admin() {
     code=$(id -u)
