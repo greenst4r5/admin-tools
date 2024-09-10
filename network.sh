@@ -81,12 +81,12 @@ main() {
     # install openvpn
     echo -e "\e[45mInstalling....\e[0m"
     install
-    echo -e "\e[32Done\e[0m"
+    echo -e "\e[32mDone\e[0m"
 
     # config openvpn
     echo -e "\e[45mConfiguring....\e[0m"
     config $1
-    echo -e "\e[32Done\e[0m"
+    echo -e "\e[32mDone\e[0m"
 }
 
 
