@@ -42,7 +42,7 @@ install() {
 
 config() {
     # copy ovpn file to /etc/openvpn
-    cp $1 /etc/openvpn/client.ovpn
+    cp $1 /etc/openvpn/client.conf
 
     # create service
     echo '[Unit]
