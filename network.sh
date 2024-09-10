@@ -20,7 +20,7 @@ file_exists() {
     fi
 
     # check if file not exists
-    if [[ -ne -f $1 ]]; then
+    if [[ -ne (-f $1) ]]; then
         echo "File not found"
         return 0
     fi
