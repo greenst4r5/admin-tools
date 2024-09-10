@@ -1,6 +1,6 @@
 #!/bin/bash
 
-usage="Usage: $0 <file>"
+usage="Usage: $0 <file>.ovpn"
 
 not_admin() {
     if [[ $EUID -ne 0 ]]; then
@@ -19,13 +19,20 @@ file_exists() {
         return 0
     fi
 
-    # check if file exists
-    if [[ -f $1 ]]; then
-        return 1
-    else
-        echo "file not exists"
+    # check if file not exists
+    if [[ -ne -f $1 ]]; then
+        echo "File not found"
         return 0
     fi
+
+
+    #check if file is ovpn
+    if [[ $1 != *.ovpn ]]; then
+        echo $usage
+        return 0
+    fi
+
+    return 1
 }
 
 install() {
@@ -34,7 +41,10 @@ install() {
 }
 
 config() {
+    # copy ovpn file to /etc/openvpn
     cp $1 /etc/openvpn/client.ovpn
+
+    # create service
     echo '[Unit]
 Description=OpenVPN service for client
 After=network.target
@@ -58,12 +68,21 @@ WantedBy=multi-user.target' > /etc/systemd/system/openvpn-client.service
 
 
 main() {
-    # check if has args
+    #check if root
+    if (not_admin); then
+        return 0
+    fi
+
+    # check if has args and file exists
     if (file_exists $1); then
         return 0
     fi
 
-    
+    # install openvpn
+    install
+
+    # config openvpn
+    config $1
 }
 
 
