@@ -34,9 +34,25 @@ install() {
 }
 
 config() {
-    cp $1 /etc/openvpn/config.ovpn
-    
+    cp $1 /etc/openvpn/client.ovpn
+    echo '[Unit]
+Description=OpenVPN service for client
+After=network.target
 
+[Service]
+Type=forking
+User=root
+Group=root
+ExecStart=/usr/sbin/openvpn --daemon ovpn-client --status /run/openvpn/client.status 10 --cd /etc/openvpn --config client.conf
+ExecStop=/usr/sbin/openvpn --killsignal SIGINT --config client.conf
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target' > /etc/systemd/system/openvpn-client.service
+
+    systemctl enable openvpn-client
+    systemctl start openvpn-client
 }
 
 
@@ -47,7 +63,7 @@ main() {
         return 0
     fi
 
-    cp $1 /
+    
 }
 
 
