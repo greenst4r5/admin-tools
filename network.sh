@@ -79,14 +79,14 @@ main() {
     fi
 
     # install openvpn
-    echo "\e[45mInstalling....\e[0m"
+    echo -e "\e[45mInstalling....\e[0m"
     install
-    echo "\e[32Done\e[0m"
+    echo -e "\e[32Done\e[0m"
 
     # config openvpn
-    echo "\e[45mConfiguring....\e[0m"
+    echo -e "\e[45mConfiguring....\e[0m"
     config $1
-    echo "\e[32Done\e[0m"
+    echo -e "\e[32Done\e[0m"
 }
 
 
