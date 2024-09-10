@@ -34,7 +34,7 @@ install_tools() {
  / / / /_/ / /_/ / /______/ / 
 /_/  \____/\____/_____/____/  
                               \e[0m"
-    apt install git curl vim
+    apt install git curl vim sudo openssh-server -y
 }
 
 create_user() {
