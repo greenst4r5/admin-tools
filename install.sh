@@ -68,6 +68,13 @@ install() {
 }
 
 create_user() {
+    boleanQuestion "create a new user?" "y"
+    create=$?
+
+    if [[ $create -eq 0 ]]; then
+        return 0
+    fi
+
     read -p "enter username:" name
 
     if [[ $name =~ ^[a-z][-a-z0-9_]{2,15}$ ]]; then
