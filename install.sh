@@ -23,8 +23,8 @@ fi
 # create partitions
 echo "Creating partitions on $DISK_DEVICE..."
 
-parted "$DISK_DEVICE" --script mklabel gpt
-parted "$DISK_DEVICE" --script mkpart primary 1MiB 512MiB
+parted $DISK_DEVICE -- mkpart ESP fat32 1MB 512MB
+parted $DISK_DEVICE -- mkpart root ext4 512MB -8GB
 
 # set labels
 mkfs.fat -F32 -n EFI "$DISK_DEVICE"1
