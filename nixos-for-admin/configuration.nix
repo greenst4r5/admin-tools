@@ -84,7 +84,7 @@
   
   systemd.user.services.docker = {
     enable = true;
-    unitConfig.ConditionUser = "operator";
+    unitConfig.ConditionUser = [ "operator" ];
   };
 
   system.stateVersion = "24.11"; # Did you read the comment?
