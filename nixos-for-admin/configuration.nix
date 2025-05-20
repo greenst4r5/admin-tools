@@ -39,7 +39,7 @@
   services.libinput.enable = true;  
   nixpkgs.config.allowUnfree = true;
   
-  users.users.admin = {
+  users.users.operator = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
@@ -76,7 +76,16 @@
     };
   
   };
-
+  
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+  
+  systemd.user.services.docker = {
+    enable = true;
+    unitConfig.ConditionUser = "operator";
+  };
 
   system.stateVersion = "24.11"; # Did you read the comment?
 
