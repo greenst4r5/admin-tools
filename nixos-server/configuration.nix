@@ -33,6 +33,7 @@
     vim 
     curl
     git
+    btop
   ];
 
 

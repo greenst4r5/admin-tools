@@ -55,6 +55,7 @@
     python3
     vscode
     xpipe
+    btop
 
     (vscode-with-extensions.override {
        vscodeExtensions = with vscode-extensions; [
