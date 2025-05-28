@@ -49,6 +49,28 @@
   #    enable = true;
   # };
 
+  # node exporter:
+  # services.prometheus.exporters.node = {
+  #   enable = true;
+  #   port = 9000;
+  #   enabledCollectors = [ "systemd" ];
+  #   extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" "--collector.wifi" ];
+  # };
+
+  # Prometheus:
+  #  services.prometheus = {
+  #   enable = true;
+  #   globalConfig.scrape_interval = "10s"; # "1m"
+  #   scrapeConfigs = [
+  #   {
+  #     job_name = "node";
+  #     static_configs = [{
+  #       targets = [ "localhost:${toString config.services.prometheus.exporters.node.port}" ];
+  #     }];
+  #   }
+  #   ];
+  # };
+
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -61,7 +83,7 @@
   networking.firewall.enable = true;
 
  
-  system.stateVersion = "24.11";
+  system.stateVersion = "version";
 
 }
 

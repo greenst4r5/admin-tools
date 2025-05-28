@@ -88,7 +88,7 @@
     unitConfig.ConditionUser = [ "operator" ];
   };
 
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "version"; # Did you read the comment?
 
 }
 
